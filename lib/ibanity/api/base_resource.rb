@@ -33,7 +33,7 @@ module Ibanity
 
     def self.find_raw_by_uri(uri:, customer_access_token: nil, headers: nil)
       raw_item = Ibanity.client.get(uri: uri, customer_access_token: customer_access_token, headers: headers)
-      raw_item["data"]
+      raw_item["data"] || { "attributes" => raw_item }
     end
 
     def self.destroy_by_uri(uri:, customer_access_token: nil)

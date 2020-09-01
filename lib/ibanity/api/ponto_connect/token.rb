@@ -4,6 +4,7 @@ module Ibanity
       def self.create(refresh_token: nil, authorization_code: nil, redirect_uri: nil, idempotency_key: nil, code_verifier: nil)
         uri = Ibanity.ponto_connect_api_schema["oauth2"]["token"]
         grant_type = refresh_token ? "refresh_token" : "authorization_code"
+        grant_type = "client_credentials" if !refresh_token && !authorization_code
         arguments = [
           ["grant_type", grant_type],
           ["client_id", Ibanity.client.ponto_connect_client_id]

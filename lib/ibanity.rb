@@ -42,6 +42,9 @@ require_relative "ibanity/api/ponto_connect/financial_institution"
 require_relative "ibanity/api/ponto_connect/account"
 require_relative "ibanity/api/ponto_connect/transaction"
 require_relative "ibanity/api/ponto_connect/synchronization"
+require_relative "ibanity/api/ponto_connect/user_info"
+require_relative "ibanity/api/ponto_connect/usage"
+require_relative "ibanity/api/ponto_connect/organization"
 require_relative "ibanity/api/consent/consent"
 require_relative "ibanity/api/consent/processing_operation"
 require_relative "ibanity/api/ponto_connect/payment"
@@ -52,7 +55,7 @@ module Ibanity
   class << self
     def client
       options = configuration.to_h.delete_if { |_, v| v.nil? }
-      @client ||= Ibanity::Client.new(options)
+      @client ||= Ibanity::Client.new(**options)
     end
 
     def configure
